@@ -19,7 +19,7 @@ defmodule FunWithFlagsUi.Mixfile do
     ]
   end
 
-  
+
   # The most common use case for this library is to embed it in
   # a host web application and serve it from a sub path: it should
   # just be plug'ed into a Phoenix or Plug router.
@@ -42,6 +42,7 @@ defmodule FunWithFlagsUi.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.12"},
+      {:phoenix_html, "~> 3.2"},
       {:plug_cowboy, ">= 2.0.0", optional: true},
       {:cowboy, ">= 2.0.0", optional: true},
       {:fun_with_flags, "~> 1.8"},

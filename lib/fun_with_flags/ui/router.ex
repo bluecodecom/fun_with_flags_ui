@@ -264,6 +264,10 @@ defmodule FunWithFlags.UI.Router do
   end
 
 
+  defp html_resp(conn, status, {:safe, body}) do
+    html_resp(conn, status, body)
+  end
+
   defp html_resp(conn, status, body) do
     conn
     |> put_resp_content_type("text/html")

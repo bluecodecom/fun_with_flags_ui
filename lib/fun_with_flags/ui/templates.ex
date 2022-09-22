@@ -2,6 +2,7 @@ defmodule FunWithFlags.UI.Templates do
   @moduledoc false
 
   require EEx
+  import Phoenix.HTML
   alias FunWithFlags.Flag
   alias FunWithFlags.UI.Utils
 
@@ -21,18 +22,18 @@ defmodule FunWithFlags.UI.Templates do
   ]
 
   for {fn_name, file_name} <- @templates do
-    EEx.function_from_file :def, fn_name, Path.expand("./templates/#{file_name}.html.eex", __DIR__), [:assigns]
+    EEx.function_from_file :def, fn_name, Path.expand("./templates/#{file_name}.html.eex", __DIR__), [:assigns], engine: Phoenix.HTML.Engine
   end
 
 
   def html_smart_status_for(flag) do
     case Utils.get_flag_status(flag) do
       :fully_open ->
-        ~s(<span class="text-success">Enabled</span>)
+        raw(~s(<span class="text-success">Enabled</span>))
       :half_open ->
-        ~s(<span class="text-warning">Enabled</span>)
+        raw(~s(<span class="text-warning">Enabled</span>))
       :closed ->
-        ~s(<span class="text-danger">Disabled</span>)
+        raw(~s(<span class="text-danger">Disabled</span>))
     end
   end
 
@@ -41,14 +42,14 @@ defmodule FunWithFlags.UI.Templates do
   end
 
   def html_status_for(:missing) do
-    ~s{<span class="badge badge-default">Disabled (missing)</span>}
+    raw(~s{<span class="badge badge-default">Disabled (missing)</span>})
   end
 
   def html_status_for(bool) when is_boolean(bool) do
     if bool do
-      ~s(<span class="badge badge-success">Enabled</span>)
+      raw(~s(<span class="badge badge-success">Enabled</span>))
     else
-      ~s(<span class="badge badge-danger">Disabled</span>)
+      raw(~s(<span class="badge badge-danger">Disabled</span>))
     end
   end
 
