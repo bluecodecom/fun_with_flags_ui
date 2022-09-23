@@ -140,6 +140,11 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="<%= path(@conn, "/assets/details.js") %>"></script>
+    <script type="text/javascript"
+      src="<%= path(@conn, "/assets/details.js") %>"
+      <%= if @conn.assigns[:script_src_nonce] do %>
+        nonce="<%= @conn.assigns[:script_src_nonce] %>"
+      <% end %>
+    ></script>
   </body>
 </html>
