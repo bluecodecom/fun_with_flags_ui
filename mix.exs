@@ -42,7 +42,7 @@ defmodule FunWithFlagsUi.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.12"},
-      {:phoenix_html, "~> 3.2"},
+      {:phoenix_html, "~> 3.2 or ~> 4.0"},
       {:plug_cowboy, ">= 2.0.0", optional: true},
       {:cowboy, ">= 2.0.0", optional: true},
       {:fun_with_flags, "~> 1.8"},
